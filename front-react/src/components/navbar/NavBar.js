@@ -1,48 +1,76 @@
-// @flow
+import React, { useContext } from "react";
+import AppBar from "@material-ui/core/AppBar";
+import MuiToolbar from "@material-ui/core/Toolbar";
+import Typography from "@material-ui/core/Typography";
+import Button from "@material-ui/core/Button";
+import Zoom from "@material-ui/core/Zoom";
+import LightThemeIcon from "@material-ui/icons/WbSunnyOutlined";
+import DarkThemeIcon from "@material-ui/icons/Brightness2Outlined";
+import { makeStyles, useTheme } from "@material-ui/core/styles";
+import { ThemeContext } from "../../context/Theme/ThemeState";
 
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
-import React, { Component, useContext } from "react";
-import '../../../node_modules/bootstrap/dist/css/bootstrap.min.css';
-import { type } from "os";
-import { Container, Navbar, Row, Nav, NavDropdown } from "react-bootstrap";
-import type { UserContextType } from "../app/App";
-import { UserContext } from "../app/App";
+const useStyles = makeStyles((theme) => ({
+  appbar: {
+    backdropFilter: "blur(20px)",
+    backgroundColor: theme.palette.background.paper + "B7",
+    padding: "0px 30px",
+  },
+  toolbar: {
+    padding: "0px",
+    maxWidth: "1280px",
+    width: "100%",
+    margin: "auto",
+  },
+  name: {
+    fontWeight: "bold",
+    fontSize: "18px",
+    color: theme.palette.text.primary,
+    marginRight: "20px",
+    [theme.breakpoints.down("xs")]: {
+      display: "none",
+    },
+  },
+  spacer: {
+    flexGrow: "1",
+  },
+  button: {
+    marginRight: "10px",
+  },
+  iconSpacer: {
+    width: "24px",
+    height: "24px",
+  },
+  icon: {
+    position: "absolute",
+  },
+}));
 
-type Props = {
+const Navbar = () => {
+  const classes = useStyles();
+  const { theme, setTheme } = useContext(ThemeContext);
 
-}
+  return (
+    <AppBar elevation={3} className={classes.appbar} color="transparent">
+      <MuiToolbar className={classes.toolbar}>
+        <Typography className={classes.name}>Serwis samochodowy</Typography>
+        <div className={classes.spacer} />
+        <Button
+          size="small"
+          variant="outlined"
+          className={classes.button}
+          onClick={() => setTheme(theme === "light" ? "dark" : "light", true)}
+        >
+          <div className={classes.iconSpacer} />
+          <Zoom in={theme === "light"}>
+            <LightThemeIcon className={classes.icon} />
+          </Zoom>
+          <Zoom in={theme === "dark"}>
+            <DarkThemeIcon className={classes.icon} />
+          </Zoom>
+        </Button>
+      </MuiToolbar>
+    </AppBar>
+  );
+};
 
-export default function NavBar(props: Props): React$Element<any> {
-    const userContext: UserContextType = useContext(UserContext)
-
-    return (
-        <Navbar bg="light" expand="lg">
-            <Container>
-                <Navbar.Brand href="/">Serwis samochodowy</Navbar.Brand>
-                <Navbar.Toggle aria-controls="basic-navbar-nav" />
-                <Navbar.Collapse id="basic-navbar-nav">
-                    <Nav className="me-auto">
-                        <Nav.Link href="/">Home</Nav.Link>
-                        
-                    </Nav>
-                    {!userContext.userData?.user.confirmed ? (
-                        <Nav>
-                            <Nav.Link href="/login">Login</Nav.Link>
-                            <Nav.Link href="/register">
-                                Register
-                            </Nav.Link>
-                        </Nav>
-                    ) : (
-                        <Nav>
-                            <Nav.Link onClick={()=>{
-                                localStorage.clear()
-                                userContext.setUserData()
-                            }}>Exit</Nav.Link>
-                        </Nav>
-                    )}
-
-                </Navbar.Collapse>
-            </Container>
-        </Navbar>
-    )
-}
+export default Navbar;
