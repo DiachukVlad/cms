@@ -46,6 +46,18 @@ const Wrapper = ({ children }) => {
                 duration: defaultTheme.transitions.duration.standard,
               }),
             },
+            h1: {
+              fontSize: "30px",
+              fontWeight: "bold",
+            },
+            h2: {
+              fontSize: "25px",
+              fontWeight: "bold",
+            },
+            h3: {
+              fontSize: "25px",
+              fontWeight: "400",
+            },
           },
           MuiLink: {
             root: {

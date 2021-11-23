@@ -1,7 +1,8 @@
 import React from "react";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
 import Navbar from "../components/Navbar/Navbar";
+import Login from "./Login/Login";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -23,7 +24,11 @@ const App = () => {
   return (
     <Router>
       <Navbar />
-      <div className={classes.root}></div>
+      <div className={classes.root}>
+        <Routes>
+          <Route path="/login" element={<Login />} />
+        </Routes>
+      </div>
     </Router>
   );
 };
