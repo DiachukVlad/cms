@@ -1,8 +1,9 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
-import Navbar from "../components/Navbar/Navbar";
+import Navbar from "../components/navbar/Navbar";
 import Login from "./Login/Login";
+import MainPage from "../components/mainPage/MainPage";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -26,6 +27,7 @@ const App = () => {
       <Navbar />
       <div className={classes.root}>
         <Routes>
+          <Route path="/" element={<MainPage />} />
           <Route path="/login" element={<Login />} />
         </Routes>
       </div>
