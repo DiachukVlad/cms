@@ -9,7 +9,7 @@ import Collapse from "@material-ui/core/Collapse";
 import Alert from "@material-ui/lab/Alert";
 import { makeStyles } from "@material-ui/core/styles";
 import { fields } from "./fields";
-import axios from "axios";
+import axios from "../../util/axios";
 import UserContext from "../../context/User/UserContext";
 
 const useStyles = makeStyles((theme) => ({

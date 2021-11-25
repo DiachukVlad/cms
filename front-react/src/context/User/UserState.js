@@ -26,6 +26,7 @@ const UserState = (props) => {
 
   useEffect(() => {
     localStorage.setItem("userState", JSON.stringify(state));
+    localStorage.setItem("jwt", state.jwt);
   }, [state]);
 
   const handleLogin = (user, jwt) => {
