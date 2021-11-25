@@ -4,7 +4,7 @@ import UserContext from "./UserContext";
 import UserReducer from "./UserReducer";
 
 const UserState = (props) => {
-  let initialState = {
+  const initialState = {
     blocked: false,
     confirmed: false,
     email: "",
@@ -32,8 +32,12 @@ const UserState = (props) => {
     dispatch({ type: types.HANDLE_LOGIN, user, jwt });
   };
 
+  const handleLogout = () => {
+    dispatch({ type: types.HANDLE_LOGOUT, initialState });
+  };
+
   return (
-    <UserContext.Provider value={{ ...state, handleLogin }}>
+    <UserContext.Provider value={{ ...state, handleLogin, handleLogout }}>
       {props.children}
     </UserContext.Provider>
   );

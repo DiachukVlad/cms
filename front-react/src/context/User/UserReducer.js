@@ -22,6 +22,12 @@ export default (state, action) => {
         ...user,
         role,
         jwt: action.jwt,
+        isLoggedIn: true,
+      };
+    }
+    case types.HANDLE_LOGOUT: {
+      return {
+        ...action.initialState,
       };
     }
     default: {
