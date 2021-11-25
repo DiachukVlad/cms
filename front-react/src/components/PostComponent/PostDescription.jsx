@@ -4,11 +4,13 @@ import { useParams } from "react-router-dom";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import TodayIcon from "@material-ui/icons/Today";
+import { useNavigate } from "react-router-dom";
 
 const PostDescription = () => {
   const { id } = useParams();
   console.log("id :>> ", id);
   const [post, setPost] = useState();
+  const navigate = useNavigate();
 
   const convertData = (date) => {
     const data = new Date(date);
@@ -32,10 +34,17 @@ const PostDescription = () => {
       margin: "0",
       marginLeft: "6px",
     },
+    returnButt: {
+      cursor: "pointer",
+      marginBottom: "10px",
+    },
   });
   const classes = useStyles();
   return (
     <div style={{ display: "flex", flexDirection: "column", margin: "20px" }}>
+      <Typography className={classes.returnButt} onClick={() => navigate(-1)}>
+        Go Back
+      </Typography>
       <div
         style={{
           display: "flex",
