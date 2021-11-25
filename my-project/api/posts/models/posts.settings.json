@@ -2,7 +2,8 @@
   "kind": "collectionType",
   "collectionName": "posts",
   "info": {
-    "name": "Posts"
+    "name": "Posts",
+    "description": ""
   },
   "options": {
     "increments": true,
@@ -11,8 +12,36 @@
   },
   "pluginOptions": {},
   "attributes": {
-    "forattedText": {
-      "type": "richtext"
+    "description": {
+      "type": "richtext",
+      "required": true,
+      "maxLength": 5000
+    },
+    "picture": {
+      "model": "file",
+      "via": "related",
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos"
+      ],
+      "plugin": "upload",
+      "required": false,
+      "pluginOptions": {}
+    },
+    "date": {
+      "type": "date"
+    },
+    "userID": {
+      "unique": true,
+      "plugin": "users-permissions",
+      "model": "user",
+      "via": "post"
+    },
+    "title": {
+      "type": "richtext",
+      "required": true,
+      "maxLength": 100
     }
   }
 }
