@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import {useNavigate} from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
 import PaddedSite from "../../components/PaddedSite/PaddedSite";
 import Box from "@material-ui/core/Box";
 import Card from "@material-ui/core/Card";
@@ -8,8 +8,8 @@ import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import { makeStyles } from "@material-ui/core/styles";
 import { fields } from "./fields";
-import axios from 'axios'
-import MainPage from "../../components/mainPage/MainPage";
+import axios from "axios";
+import MainPage from "../MainPage/MainPage";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -51,34 +51,38 @@ const useStyles = makeStyles((theme) => ({
 const Login = () => {
   const classes = useStyles();
   // const [values, setValues] = useState(createValues());
-  const [email, setEmail] = useState('qwe@gmail.com')
-  const [pass, setPass] = useState('Qwerty1234')
+  const [email, setEmail] = useState("qwe@gmail.com");
+  const [pass, setPass] = useState("Qwerty1234");
   const navigate = useNavigate();
 
   const handleLogin = (e) => {
-    axios.post("/auth/local", { identifier: email, password: pass }).then((res) => {
-      navigate("/")
-    }).catch(err => {
-      console.log(err)
-    })
-    e.preventDefault()
-  }
+    axios
+      .post("/auth/local", { identifier: email, password: pass })
+      .then((res) => {
+        navigate("/");
+        console.log("res :>> ", res);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+    e.preventDefault();
+  };
 
   return (
     <Card elevation={3} className={classes.root}>
       <Typography variant="h1" component="h1" className={classes.header}>
         Zaloguj się
       </Typography>
-      <form className={classes.column}
-        onSubmit={handleLogin}
-      >
+      <form className={classes.column} onSubmit={handleLogin}>
         <TextField
           variant="outlined"
           label={"Adres e-mail"}
           type="email"
           className={classes.input}
           value={email}
-          onChange={email => { setEmail(email.target.value) }}
+          onChange={(email) => {
+            setEmail(email.target.value);
+          }}
         />
         <TextField
           variant="outlined"
@@ -86,13 +90,11 @@ const Login = () => {
           type="password"
           className={classes.input}
           value={pass}
-          onChange={pass => { setPass(pass.target.value) }}
+          onChange={(pass) => {
+            setPass(pass.target.value);
+          }}
         />
-        <Button
-          variant="outlined"
-          color="primary"
-          type="submit"
-        >
+        <Button variant="outlined" color="primary" type="submit">
           Zaloguj się
         </Button>
       </form>

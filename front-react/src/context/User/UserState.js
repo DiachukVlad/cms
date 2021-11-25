@@ -23,3 +23,5 @@ const UserState = (props) => {
     </UserContext.Provider>
   );
 };
+
+export default UserState;
