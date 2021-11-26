@@ -9,13 +9,13 @@ import UserState from "./context/User/UserState";
 const Wrapper = ({ children }) => {
   const { theme, hasChanged, setTheme } = useContext(ThemeContext);
   const defaultTheme = useTheme();
-  const prefersDarkMode = useMediaQuery("(prefers-color-scheme: dark)");
+  // const prefersDarkMode = useMediaQuery("(prefers-color-scheme: dark)");
 
-  useEffect(() => {
-    if (!hasChanged) {
-      setTheme(prefersDarkMode ? "dark" : "light", false);
-    }
-  }, [prefersDarkMode]);
+  // useEffect(() => {
+  //   if (!hasChanged) {
+  //     setTheme(prefersDarkMode ? "dark" : "light", false);
+  //   }
+  // }, [prefersDarkMode]);
 
   const muiTheme = useMemo(
     () =>

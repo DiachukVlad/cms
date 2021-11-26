@@ -6,6 +6,7 @@ export const ThemeContext = createContext();
 const ThemeReducer = (state, action) => {
   switch (action.type) {
     case types.CHANGE_THEME: {
+      localStorage.setItem("theme", action.theme)
       return {
         ...state,
         theme: action.theme,
@@ -22,7 +23,7 @@ const ThemeReducer = (state, action) => {
 
 const ThemeState = (props) => {
   const initialState = {
-    theme: "light",
+    theme: localStorage.getItem("theme") ?? 'light',
     hasChanged: false,
   };
 
