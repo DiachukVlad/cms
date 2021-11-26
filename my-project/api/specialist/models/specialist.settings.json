@@ -18,7 +18,7 @@
     "surname": {
       "type": "string"
     },
-    "online": {
+    "available": {
       "type": "boolean"
     },
     "job": {
