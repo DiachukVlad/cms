@@ -13,7 +13,7 @@ import Specialists from "../components/specialists/Specialists";
 const useStyles = makeStyles((theme) => ({
   root: {
     boxSizing: "border-box",
-    padding: "104px 175px",
+    padding: "86px 175px",
     minHeight: "100vh",
     backgroundColor: theme.palette.background.default,
     [theme.breakpoints.down("xs")]: {
