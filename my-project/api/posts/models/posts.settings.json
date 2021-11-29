@@ -33,15 +33,17 @@
       "type": "date"
     },
     "userID": {
-      "unique": true,
+      "via": "postID",
       "plugin": "users-permissions",
-      "model": "user",
-      "via": "post"
+      "model": "user"
     },
     "title": {
       "type": "richtext",
       "required": true,
       "maxLength": 100
+    },
+    "postId": {
+      "type": "uid"
     }
   }
 }

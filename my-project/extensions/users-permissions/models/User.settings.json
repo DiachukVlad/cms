@@ -63,9 +63,10 @@
       "type": "uid",
       "required": true
     },
-    "post": {
+    "postID": {
       "via": "userID",
-      "model": "posts"
+      "model": "posts",
+      "collection": "posts"
     }
   }
 }

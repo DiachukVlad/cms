@@ -1,20 +1,15 @@
-import React from "react";
-import { Route, Redirect } from "react-router-dom";
+import React, { useContext } from "react";
+import { Route, useNavigate, Routes } from "react-router-dom";
+import UserContext from "../../context/User/UserContext";
+import Login from "../../screens/Login/Login";
 
-const PrivateRoute = ({ path, Component, roles, isAuth }) => {
-  //   const userRole = useSelector((state) => state.authentication.userRole);
+const PrivateRoute = ({ path, Component, userRoles, loggedIn }) => {
+  const navigate = useNavigate();
 
   return (
-    <Route
-      path={path}
-      render={() => {
-        if (isAuth && roles.includes(userRole)) {
-          return <Component />;
-        } else {
-          return <Redirect to="/login" />;
-        }
-      }}
-    />
+    <Routes>
+      <Route path={path} element={loggedIn ? <Component /> : <Login />} />
+    </Routes>
   );
 };
 
