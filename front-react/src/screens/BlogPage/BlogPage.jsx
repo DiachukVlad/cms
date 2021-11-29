@@ -20,7 +20,7 @@ const BlogPage = () => {
   }, []);
 
   return (
-    <div style={{ display: "flex", margin: "20px", flexDirection: "column" }}>
+    <div style={{ display: "flex", flexDirection: "column" }}>
       <Typography gutterBottom variant="h5" component="h2">
         Blog Serwisowy
       </Typography>
