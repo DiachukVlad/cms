@@ -9,6 +9,7 @@ import LightThemeIcon from "@material-ui/icons/WbSunnyOutlined";
 import DarkThemeIcon from "@material-ui/icons/Brightness2Outlined";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
 import { ThemeContext } from "../../context/Theme/ThemeState";
+import UserContext from "../../context/User/UserContext";
 import { Link, useNavigate } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
@@ -51,7 +52,17 @@ const useStyles = makeStyles((theme) => ({
 const Navbar = () => {
   const classes = useStyles();
   const { theme, setTheme } = useContext(ThemeContext);
+  const { isLoggedIn, handleLogout } = useContext(UserContext);
   const navigate = useNavigate();
+
+  const handleLoginButtonClick = () => {
+    if (isLoggedIn) {
+      handleLogout();
+      navigate("/");
+    } else {
+      navigate("/login");
+    }
+  };
 
   return (
     <AppBar elevation={3} className={classes.appbar} color="transparent">
@@ -74,8 +85,8 @@ const Navbar = () => {
             <DarkThemeIcon className={classes.icon} />
           </Zoom>
         </Button>
-        <Button variant="outlined" onClick={() => navigate("/login")}>
-          Zaloguj się
+        <Button variant="outlined" onClick={() => handleLoginButtonClick()}>
+          {isLoggedIn ? "Wyloguj się" : "Zaloguj się"}
         </Button>
       </MuiToolbar>
     </AppBar>

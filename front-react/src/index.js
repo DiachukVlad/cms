@@ -4,6 +4,7 @@ import App from "./screens/App";
 import { createTheme, useTheme, ThemeProvider } from "@material-ui/core/styles";
 import useMediaQuery from "@material-ui/core/useMediaQuery";
 import ThemeState, { ThemeContext } from "./context/Theme/ThemeState";
+import UserState from "./context/User/UserState";
 
 const Wrapper = ({ children }) => {
   const { theme, hasChanged, setTheme } = useContext(ThemeContext);
@@ -88,9 +89,11 @@ const Wrapper = ({ children }) => {
 ReactDOM.render(
   <React.StrictMode>
     <ThemeState>
-      <Wrapper>
-        <App />
-      </Wrapper>
+      <UserState>
+        <Wrapper>
+          <App />
+        </Wrapper>
+      </UserState>
     </ThemeState>
   </React.StrictMode>,
   document.getElementById("root")
