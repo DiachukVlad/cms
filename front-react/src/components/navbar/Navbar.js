@@ -64,6 +64,7 @@ const Navbar = () => {
   const { theme, setTheme } = useContext(ThemeContext);
   const { isLoggedIn, handleLogout } = useContext(UserContext);
   const navigate = useNavigate();
+  console.log("isLoggedIn :>> ", isLoggedIn);
 
   const handleLoginButtonClick = () => {
     if (isLoggedIn) {
@@ -82,6 +83,9 @@ const Navbar = () => {
         </MuiLink>
         <MuiLink underline="none" to="/blog" component={Link}>
           <Typography className={classes.link}>Blog</Typography>
+        </MuiLink>
+        <MuiLink underline="none" to="/specialists" component={Link}>
+          <Typography className={classes.link}>Specialists</Typography>
         </MuiLink>
         <div className={classes.spacer} />
         <Button
