@@ -34,6 +34,16 @@ const useStyles = makeStyles((theme) => ({
       display: "none",
     },
   },
+  link: {
+    fontWeight: "normal",
+    fontSize: "16px",
+    color: theme.palette.text.primary,
+    marginRight: "20px",
+    textDecoration: "none",
+    [theme.breakpoints.down("xs")]: {
+      display: "none",
+    },
+  },
   spacer: {
     flexGrow: "1",
   },
@@ -69,6 +79,9 @@ const Navbar = () => {
       <MuiToolbar className={classes.toolbar}>
         <MuiLink underline="none" to="/" component={Link}>
           <Typography className={classes.name}>Serwis samochodowy</Typography>
+        </MuiLink>
+        <MuiLink underline="none" to="/blog" component={Link}>
+          <Typography className={classes.link}>Blog</Typography>
         </MuiLink>
         <div className={classes.spacer} />
         <Button
